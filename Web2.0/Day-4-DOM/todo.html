@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+</head>
+<body>
+    <h1>To Do List: </h1>
+    <ol class="list">
+        <li>Create a web app</li>
+    </ol>
+    <input type="text" id="taskInput" placeholder="Enter a new task">
+    <button onclick="AddTodo()">Add Task</button>
+    <button onClick="DeleteTodo()">Delete Task</button>
+    <script>
+        function AddTodo() {
+            const taskInput = document.querySelector('#taskInput'); 
+            const taskValue = taskInput.value.trim(); // Trim whitespace to avoid empty tasks
+            if (taskValue === '') return; // Do not add empty tasks
+
+            const list = document.querySelector('.list');
+            const listItem = document.createElement('li'); // Create a new <li> element
+            listItem.textContent = taskValue; // Set the text content of the <li> to the task value
+
+            list.appendChild(listItem); // Append the new <li> to the list
+            taskInput.value = ''; // Clear the input field after adding the task
+            let counter = 0;
+            if (taskValue == 'create a clock'){
+                setInterval(function(){
+                    listItem.textContent = counter;
+                    counter = counter + 1;
+                },1000)
+            }
+        }
+
+        function DeleteTodo(){
+            const list = document.querySelector('.list');
+            // remove the last li from the list
+            if(list.lastChild){
+                list.removeChild(list.lastChild)
+            }
+        }
+    </script>
+</body>
+</html>
